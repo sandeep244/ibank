@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading">
+  </mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveAccount()"  *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="text" name="type"  placeholder="Enter the type" formControlName="type">
+      <mat-error *ngIf="form.get('type').invalid">Please enter valid type!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="accountNumber"  placeholder="Enter the account number" formControlName="accountNumber">
+      <mat-error *ngIf="form.get('accountNumber').invalid">Please enter valid account number!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" name="amount"  placeholder="Enter the amount $" formControlName="amount">
+      <mat-error *ngIf="form.get('type').invalid">Please enter valid amount!</mat-error>
+    </mat-form-field>
+    <button  color="accent" mat-raised-button type="submit">Save Account</button>
+  </form>
+</mat-card>

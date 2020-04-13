@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:3000/api',
+  dialogFlow: '547e41df8a7b43afba81db0afbdde850'
 };
 
 /*

@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading">
+  </mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveTransaction()"  *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="number" name="amount"  placeholder="Enter the amount $" formControlName="amount">
+      <mat-error *ngIf="form.get('amount').invalid">Please enter valid amount!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="desc"  placeholder="Enter the description" formControlName="desc">
+      <mat-error *ngIf="form.get('desc').invalid">Please enter valid description!</mat-error>
+    </mat-form-field>
+    <button  color="accent" mat-raised-button type="submit">{{ mode }}</button>
+  </form>
+</mat-card>

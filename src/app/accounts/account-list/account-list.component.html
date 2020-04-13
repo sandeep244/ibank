@@ -1,0 +1,26 @@
+<p class="welcome" *ngIf="!isAuthenticated">Welcome to iBank</p>
+<mat-spinner *ngIf="isLoading && isAuthenticated">
+</mat-spinner>
+<mat-accordion multi="true" *ngIf="accounts.length > 0 && !isLoading && isAuthenticated" >
+  <mat-expansion-panel *ngFor="let account of accounts">
+    <mat-expansion-panel-header>{{ account.type }} : {{ account.accountNumber }}</mat-expansion-panel-header>
+    <p></p>
+    <p class="bank-amount">Balance : $ {{ account.amount }}</p>
+    <mat-action-row *ngIf="isAuthenticated && userId === account.creator">
+      <button mat-raised-button color="primary" [routerLink]="['/edit',account.id]" >Edit</button>
+      <button mat-raised-button color="primary" [routerLink]="['/edit',account.id,'credit']" >Credit</button>
+      <button mat-raised-button color="primary" [routerLink]="['/edit',account.id,'debit']" >Debit</button>
+      <button mat-raised-button color="primary" (click)="onDelete(account.id)">Delete</button>
+    </mat-action-row>
+    <p>  </p>
+    <p *ngIf="account.trxns.length > 0">Transaction history</p>
+    <mat-expansion-panel *ngFor="let trxn of account.trxns">
+      <mat-expansion-panel-header>{{ trxn.type }} : {{ trxn.amount }}</mat-expansion-panel-header>
+      <p>Transaction Time: {{ trxn.date }}     Transaction Details: {{ trxn.desc }}</p>
+    </mat-expansion-panel>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator *ngIf="accounts.length > 0 && isAuthenticated" [length]="totalAccounts"
+  [pageSize]="accountsPerPage"
+  [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="accounts.length <= 0 && !isLoading && isAuthenticated">No Accounts added yet!</p>

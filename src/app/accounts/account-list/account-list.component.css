@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  margin-top: 2rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+mat-paginator {
+  margin: 1rem;
+}
+
+.bank-amount {
+  font-size: 48px;
+}
+
+.welcome {
+  font-size: 48px;
+  text-align: center;
+}
